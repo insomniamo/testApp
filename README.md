@@ -1,1 +1,1 @@
-# https://insomniamo.github.io/testApp/
+# insomniamo.github.io/testApp/
