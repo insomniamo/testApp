@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Список продуктов</title>
     <link rel="stylesheet" href="Source/style.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Список продуктов</h1>
-        <ul id="product-list">
-            <!-- Здесь будет отображаться список продуктов -->
-        </ul>
-        <div class="input-container">
-            <input type="text" id="product-input" placeholder="Введите новый продукт">
-            <button id="add-product-btn">Добавить</button>
-            <button id="clear-products-btn">Очистить список</button>
+    <div id="app">
+        <div class="container">
+            <h1>Список продуктов</h1>
+            <div class="input-container">
+                <input type="text" v-model="newProduct" @keyup.enter="addProduct" placeholder="Введите новый продукт">
+                <button @click="addProduct">Добавить</button>
+                <button @click="clearProducts">Очистить список</button>
+            </div>
+            <ul>
+                <li v-for="(product, index) in products" :key="index" @click="toggleComplete(product, index)"
+                    :class="{ completed: product.completed }">
+                    {{ product.name }}
+                </li>
+            </ul>
         </div>
     </div>
     <script src="Source/code.js"></script>
