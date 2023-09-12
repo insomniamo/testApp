@@ -43,15 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Обработчик клика по кнопке "Добавить"
-    addProductBtn.addEventListener("click", () => {
-        const productName = productInput.value.trim();
-        if (productName) {
-            savedProducts.push({ name: productName, completed: false });
-            saveProducts();
-            productInput.value = "";
-            displayProducts();
-        }
-    });
+    addProductBtn.addEventListener("click", addProduct);
 
     // Обработчик клика по кнопке "Очистить список"
     clearProductsBtn.addEventListener("click", () => {
@@ -59,6 +51,24 @@ document.addEventListener("DOMContentLoaded", function () {
         saveProducts();
         displayProducts();
     });
+
+    // Обработчик нажатия клавиши "Enter" в поле ввода продукта
+    productInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            addProduct();
+        }
+    });
+
+    // Функция для добавления продукта
+    function addProduct() {
+        const productName = productInput.value.trim();
+        if (productName) {
+            savedProducts.push({ name: productName, completed: false });
+            saveProducts();
+            productInput.value = "";
+            displayProducts();
+        }
+    }
 
     // Инициализация отображения списка продуктов
     displayProducts();
